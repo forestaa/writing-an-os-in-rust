@@ -16,18 +16,11 @@ pub extern "C" fn _start() -> ! {
 
     writing_an_os_in_rust::init();
 
-    fn stack_overflow() {
-        stack_overflow(); // for each recursion, the return address is pushed
-    }
-
-    // uncomment line below to trigger a stack overflow
-    // stack_overflow();
-
     #[cfg(test)]
     test_main();
 
     println!("It did not crash!");
-    loop {}
+    writing_an_os_in_rust::hlt_loop();
 }
 
 /// This function is called on panic.
@@ -35,7 +28,7 @@ pub extern "C" fn _start() -> ! {
 #[panic_handler]
 fn panic(info: &PanicInfo) -> ! {
     println!("{}", info);
-    loop {}
+    writing_an_os_in_rust::hlt_loop();
 }
 
 #[cfg(test)]
