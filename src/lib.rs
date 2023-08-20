@@ -7,6 +7,7 @@
 
 use core::panic::PanicInfo;
 
+pub mod debug;
 pub mod gdt;
 pub mod interrupts;
 pub mod serial;

@@ -9,6 +9,7 @@ use writing_an_os_in_rust::println;
 
 #[no_mangle] // don't mangle the name of this function
 pub extern "C" fn _start() -> ! {
+    writing_an_os_in_rust::debug::print_debug_info();
     // this function is the entry point, since the linker looks for a function
     // named `_start` by default
 
