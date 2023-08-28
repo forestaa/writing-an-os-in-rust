@@ -6,6 +6,7 @@
 
 use core::panic::PanicInfo;
 use writing_an_os_in_rust::println;
+use x86_64::registers::control::Cr3;
 
 #[no_mangle] // don't mangle the name of this function
 pub extern "C" fn _start() -> ! {
@@ -16,6 +17,12 @@ pub extern "C" fn _start() -> ! {
     println!("Hello World{}", "!");
 
     writing_an_os_in_rust::init();
+
+    let (level_4_page_table, _) = Cr3::read();
+    println!(
+        "Level 4 page table at: {:?}",
+        level_4_page_table.start_address()
+    );
 
     #[cfg(test)]
     test_main();
