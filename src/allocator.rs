@@ -35,7 +35,6 @@ pub fn init_heap(
         unsafe { mapper.map_to(page, frame, flags, frame_allocator)?.flush() };
     }
 
-    // new
     unsafe {
         ALLOCATOR.lock().init(HEAP_START, HEAP_SIZE);
     }
